@@ -35,8 +35,9 @@ Elm.Native.EState.make = function(localRuntime) {
         var refVal = triple._0;
         var newValue = triple._1;
         var state = triple._2;
+        var oldVal = state.arr[refVal];
         state.arr[refVal] = newValue;
-        return makePair(state, null);
+        return makePair(state, oldVal);
         
     }
 
