@@ -47,11 +47,11 @@ Elm.Native.EState.make = function(localRuntime) {
 
     function checkIfIsRef(x)
     {
-        if (x._ctor = "_isEStateReference")
+        if (typeof(x) == 'object' && x._ctor == "_isEStateReference")
         {
-            return {ctor : "True"};
+            return true;
         }
-        return {ctor : "False"};
+        return false;
     }
 
     return localRuntime.Native.EState.values = {
