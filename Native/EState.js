@@ -41,6 +41,43 @@ Elm.Native.EState.make = function(localRuntime) {
         
     }
 
+    function newArray(args)
+    {
+        var initialValue = args._0;
+        var lower = args._1;
+        var upper = args._2;
+        var state = args._3;
+        
+        var retVal = state.next;
+        state.arr[retVal] = [];
+        for (i = lower; i <= upper; i++)
+        {
+            state.arr[retVal][i] = initialValue;
+        }
+        state.next += 1;
+        return makePair(state, retVal);
+    }
+
+    function arrayElement(args)
+    {
+        var refVal = args._0;
+        var i = args._1;
+        var state = args._2;
+        return makePair(state, state.arr[refVal][i]);
+    }
+
+    function writeArray(args)
+    {
+        var refVal = args._0;
+        var newValue = args._1;
+        var i = args._2;
+        var state = args._3;
+        var oldVal = state.arr[refVal][i];
+        state.arr[refVal][i] = newValue;
+        return makePair(state, oldVal);
+        
+    }
+
     function newState(x)
     {
         return {next : 0, arr : [], ctor :  "_isEStateReference"};
@@ -60,6 +97,9 @@ Elm.Native.EState.make = function(localRuntime) {
         deRef   : deRef,
         writeRef  : writeRef,
         newState : newState,
-        checkIfIsRef : checkIfIsRef
+        checkIfIsRef : checkIfIsRef,
+        newArray : newArray,
+        writeArray : writeArray,
+        arrayElement : arrayElement
     };
 };
