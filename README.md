@@ -1,6 +1,6 @@
 # Escapable State in Elm
 
-This package allows you to use mutation is a safe and localized way. There are
+This package allows you to use mutation in a safe and localized way. There are
 a few algorithms and data structures that rely crucially on mutation, such as
 the [union-find data structure](http://en.wikipedia.org/wiki/Disjoint-set_data_structure),
 and this package makes it possible to use them in a small part of your code without
